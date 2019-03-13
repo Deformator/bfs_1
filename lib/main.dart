@@ -41,6 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
           await Future.delayed(
             const Duration(seconds: 1),
           );
+         setState(() {
+            _articles.removeAt(0);
+         });
         },
         child: ListView(
           children: _articles.map(_buildItem).toList(),
@@ -51,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildItem(Article article) {
     return Padding(
+      key: Key(article.text),
       padding: const EdgeInsets.all(16.0),
       child: ExpansionTile(
         title: Text(
